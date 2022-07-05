@@ -1,0 +1,68 @@
+plugins {
+    id 'maven-publish'
+    id "org.jetbrains.kotlin.jvm" version "1.6.21"
+    id "org.jetbrains.kotlin.kapt" version "1.6.21"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+group = 'com.pvpbeach.cosmetics'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+
+    maven {
+        url 'https://hub.spigotmc.org/nexus/content/repositories/public/'
+    }
+
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+
+    maven {
+        url "https://repo.aikar.co/content/groups/aikar/"
+    }
+
+    maven {
+        url 'https://jitpack.io'
+    }
+
+    maven {
+        name = 'placeholderapi'
+        url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
+        allowInsecureProtocol = true
+    }
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
+//    implementation 'xyz.mkotb:config-api:1.0'
+    implementation "co.aikar:acf-bukkit:0.5.1-SNAPSHOT"
+    implementation 'io.github.devrawr:honey:1.0-SNAPSHOT'
+    implementation 'com.github.NoSequel.ConfigAPI:shared:d87cae12d6'
+    implementation 'com.github.patrickzondervan:events:31631859a6'
+    implementation 'xyz.xenondevs:particle:1.8.1'
+
+    compileOnly 'me.clip:placeholderapi:2.10.4'
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+}
+
+compileKotlin {
+    kotlinOptions.javaParameters = true
+    kotlinOptions.jvmTarget = "11"
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            project.shadow.component(publication)
+        }
+    }
+}
+
+
+tasks.build.dependsOn(
+        shadowJar, publishShadowPublicationToMavenLocal
+)
