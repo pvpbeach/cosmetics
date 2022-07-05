@@ -1,10 +1,10 @@
 package com.pvpbeach.cosmetics.type.kill
 
+import com.pvpbeach.cosmetics.events.PlayerKillEvent
 import com.pvpbeach.cosmetics.type.CosmeticType
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
-import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.event.entity.PlayerDeathEvent
 import java.util.*
 
@@ -23,14 +23,14 @@ abstract class KillEffectCosmeticType : CosmeticType
     abstract fun handleKillEffect(target: Entity, killer: Player)
 
     @EventHandler
-    fun onKill(event: EntityDeathEvent)
+    fun onKill(event: PlayerKillEvent)
     {
-        val entity = event.entity
-        val player = event.entity.killer
+        val entity = event.killer
+        val player = event.deathEvent.entity
 
         handleKillEffect(
-            target = entity,
-            killer = player
+            target = player,
+            killer = entity
         )
     }
 }
