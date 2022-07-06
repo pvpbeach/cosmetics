@@ -1,8 +1,6 @@
 package com.pvpbeach.cosmetics.particles
 
-import com.pvpbeach.cosmetics.filter.TargetFilter
 import com.pvpbeach.cosmetics.filter.TargetFilterHandler
-import com.pvpbeach.cosmetics.filter.impl.NormalTargetFilter
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import xyz.xenondevs.particle.ParticleBuilder
@@ -20,7 +18,6 @@ data class WrappedParticle(
 
 object ParticleHandler
 {
-
     fun sendWrappedParticles(particles: List<WrappedParticle>, target: Entity)
     {
         for (particle in particles)

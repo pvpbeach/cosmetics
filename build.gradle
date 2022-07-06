@@ -42,7 +42,6 @@ repositories {
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
-//    implementation 'xyz.mkotb:config-api:1.0'
     implementation "co.aikar:acf-bukkit:0.5.1-SNAPSHOT"
     implementation 'io.github.devrawr:honey:1.0-SNAPSHOT'
     implementation 'com.github.NoSequel.ConfigAPI:shared:d87cae12d6'

@@ -3,6 +3,7 @@ package com.pvpbeach.cosmetics.type.kill.type
 import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.ProtocolLibrary
 import com.comphenix.protocol.events.PacketContainer
+import com.pvpbeach.cosmetics.filter.TargetFilterHandler
 import com.pvpbeach.cosmetics.particles.ParticleHandler
 import com.pvpbeach.cosmetics.particles.WrappedParticle
 import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
@@ -192,7 +193,7 @@ val EXPLOSION_KILL_EFFECT = parseEffectLinear("Explosion", "explosion_kill_effec
 
 val FIREWORK_KILL_EFFECT = parseEffectLinear("Firework", "firework_kill_effect") {
     val location = it.location
-    val filter = ParticleHandler.filter
+    val filter = TargetFilterHandler.filter
 
     val manager = ProtocolLibrary.getProtocolManager()
     val packet = PacketContainer(PacketType.Play.Server.SPAWN_ENTITY)

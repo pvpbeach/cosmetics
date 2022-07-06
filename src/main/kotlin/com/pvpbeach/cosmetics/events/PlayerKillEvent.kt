@@ -9,20 +9,16 @@ class PlayerKillEvent(player: Player, val deathEvent: PlayerDeathEvent) : Player
 {
     companion object
     {
-        private val HANDLERS = HandlerList()
+        private val HANDLERS =
+            HandlerList()
 
-        //I just added this.
         @JvmStatic
-        fun getHandlerList(): HandlerList
-        {
-            return HANDLERS
-        }
+        fun getHandlerList() =
+            HANDLERS
     }
 
     val killer = player
 
-    override fun getHandlers(): HandlerList
-    {
-        return HANDLERS
-    }
+    override fun getHandlers() =
+        HANDLERS
 }
