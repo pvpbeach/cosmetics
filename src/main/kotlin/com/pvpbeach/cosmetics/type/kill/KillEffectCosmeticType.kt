@@ -12,7 +12,6 @@ abstract class KillEffectCosmeticType : CosmeticType
 {
     abstract override val name: String
     abstract override val id: String
-    override val players = mutableListOf<UUID>()
 
     /**
      * Method gets called right when the [PlayerDeathEvent] is called.

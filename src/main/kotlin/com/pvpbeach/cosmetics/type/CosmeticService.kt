@@ -4,6 +4,8 @@ import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
 import com.pvpbeach.cosmetics.type.kill.type.*
 import com.pvpbeach.cosmetics.type.message.KillMessageCosmeticType
 import com.pvpbeach.cosmetics.type.message.type.*
+import com.pvpbeach.cosmetics.type.trail.TrailCosmeticType
+import com.pvpbeach.cosmetics.type.trail.type.*
 import org.bukkit.Bukkit
 import kotlin.reflect.KClass
 
@@ -30,6 +32,18 @@ object CosmeticService
             BBQ_KILL_MESSAGE,
             HONORABLE_KILL_MESSAGE,
             WOOF_WOOF_KILL_MESSAGE
+        ),
+        TrailCosmeticType::class to mutableListOf(
+            CRIT_TRAIL_TYPE,
+            WATER_SPLASH_TRAIL_TYPE,
+            ANGRY_VILLAGER_TRAIL_TYPE,
+            HAPPY_VILLAGER_TRAIL_TYPE,
+            HEART_TRAIL_TYPE,
+            FLAME_TRAIL_TYPE,
+            DRIP_LAVA_TRAIL_TYPE,
+            PORTAL_TRAIL_TYPE,
+            SNOWBALL_TRAIL_TYPE,
+            REDSTONE_TRAIL_TYPE,
         )
     )
 

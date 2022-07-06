@@ -1,14 +1,12 @@
 package com.pvpbeach.cosmetics.type
 
+import com.pvpbeach.cosmetics.player.PlayerCosmeticData
 import io.github.devrawr.events.Events
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.player.PlayerEvent
-import java.util.UUID
 
 interface CosmeticType
 {
-    val players: MutableList<UUID>
     val name: String
     val id: String
 
@@ -31,16 +29,21 @@ interface CosmeticType
             Events
                 .listenTo(event.asSubclass(PlayerEvent::class.java))
                 .filter {
-                    players.contains(it.player.uniqueId)
+                    val player = it.player
+                    val profile = PlayerCosmeticData[player]
+
+                    var superclass = this::class.java
+
+                    while (CosmeticType::class.java.isAssignableFrom(superclass.superclass))
+                    {
+                        superclass = superclass.superclass as Class<out CosmeticType>
+                    }
+
+                    profile[superclass] == this
                 }
                 .on {
                     method.invoke(this, it)
                 }
         }
-    }
-
-    fun apply(player: Player)
-    {
-        players.add(player.uniqueId)
     }
 }

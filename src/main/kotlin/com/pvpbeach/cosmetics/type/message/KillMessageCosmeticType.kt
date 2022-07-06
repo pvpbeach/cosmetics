@@ -9,7 +9,6 @@ import java.util.*
 
 abstract class KillMessageCosmeticType(override val name: String, override val id: String) : CosmeticType
 {
-    override val players = mutableListOf<UUID>()
     abstract val killMessages: Array<KillMessage>
 
     @EventHandler
