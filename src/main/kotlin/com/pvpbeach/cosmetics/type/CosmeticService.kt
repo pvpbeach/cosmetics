@@ -1,20 +1,66 @@
 package com.pvpbeach.cosmetics.type
 
 import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
-import com.pvpbeach.cosmetics.type.kill.type.BLOOD_KILL_EFFECT
-import com.pvpbeach.cosmetics.type.kill.type.CHESS_KILL_EFFECT
-import com.pvpbeach.cosmetics.type.kill.type.CLOUD_KILL_EFFECT
-import com.pvpbeach.cosmetics.type.kill.type.COAL_KILL_EFFECT
+import com.pvpbeach.cosmetics.type.kill.type.*
+import com.pvpbeach.cosmetics.type.message.KillMessageCosmeticType
+import com.pvpbeach.cosmetics.type.message.type.COMPUTER_NERD_KILL_MESSAGE
+import com.pvpbeach.cosmetics.type.message.type.MEME_KILL_MESSAGE
+import org.bukkit.Bukkit
 import kotlin.reflect.KClass
 
 object CosmeticService
 {
-    val particleMap = hashMapOf<KClass<out CosmeticType>, List<CosmeticType>>(
-        KillEffectCosmeticType::class to listOf(
+    val cosmeticTypeMap = hashMapOf<KClass<out CosmeticType>, MutableList<CosmeticType>>(
+        KillEffectCosmeticType::class to mutableListOf(
             BLOOD_KILL_EFFECT,
             CHESS_KILL_EFFECT,
             CLOUD_KILL_EFFECT,
-            COAL_KILL_EFFECT
+            COAL_KILL_EFFECT,
+            COOKIE_KILL_EFFECT,
+            DIAMOND_KILL_EFFECT,
+            FLAME_KILL_EFFECT,
+            EXPLOSION_KILL_EFFECT,
+            GOLD_KILL_EFFECT,
+            EMERALD_KILL_EFFECT
+        ),
+        KillMessageCosmeticType::class to mutableListOf(
+            COMPUTER_NERD_KILL_MESSAGE,
+            MEME_KILL_MESSAGE
         )
     )
+
+    val dependMap = hashMapOf<String, HashMap<KClass<out CosmeticType>, MutableList<CosmeticType>>>(
+        "ProtocolLib" to hashMapOf(
+            KillEffectCosmeticType::class to mutableListOf(
+                FIREWORK_KILL_EFFECT
+            )
+        )
+    )
+
+    init
+    {
+        registerDependEffects()
+    }
+
+    private fun registerDependEffects()
+    {
+        for (depend in dependMap)
+        {
+            val plugin = depend.key
+            val effects = depend.value
+
+            if (Bukkit.getPluginManager().getPlugin(plugin) == null)
+            {
+                continue
+            }
+
+            for (effect in effects)
+            {
+                cosmeticTypeMap.putIfAbsent(
+                    effect.key, mutableListOf()
+                )
+                cosmeticTypeMap[effect.key]!!.addAll(effect.value)
+            }
+        }
+    }
 }

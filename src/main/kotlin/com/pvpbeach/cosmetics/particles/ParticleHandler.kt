@@ -1,6 +1,8 @@
 package com.pvpbeach.cosmetics.particles
 
-import com.pvpbeach.cosmetics.particles.impl.NormalParticleFilter
+import com.pvpbeach.cosmetics.filter.TargetFilter
+import com.pvpbeach.cosmetics.filter.TargetFilterHandler
+import com.pvpbeach.cosmetics.filter.impl.NormalTargetFilter
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import xyz.xenondevs.particle.ParticleBuilder
@@ -18,7 +20,6 @@ data class WrappedParticle(
 
 object ParticleHandler
 {
-    val filter: ParticleFilter = NormalParticleFilter
 
     fun sendWrappedParticles(particles: List<WrappedParticle>, target: Entity)
     {
@@ -44,7 +45,9 @@ object ParticleHandler
 
     fun processPlayerParticle(player: Entity, builder: ParticleBuilder)
     {
-        val filtered = filter.filter(player)
+        val filtered = TargetFilterHandler
+            .filter
+            .filter(player)
 
         builder.display {
             filtered.contains(it)
