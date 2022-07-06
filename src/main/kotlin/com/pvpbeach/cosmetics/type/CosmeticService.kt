@@ -3,8 +3,7 @@ package com.pvpbeach.cosmetics.type
 import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
 import com.pvpbeach.cosmetics.type.kill.type.*
 import com.pvpbeach.cosmetics.type.message.KillMessageCosmeticType
-import com.pvpbeach.cosmetics.type.message.type.COMPUTER_NERD_KILL_MESSAGE
-import com.pvpbeach.cosmetics.type.message.type.MEME_KILL_MESSAGE
+import com.pvpbeach.cosmetics.type.message.type.*
 import org.bukkit.Bukkit
 import kotlin.reflect.KClass
 
@@ -25,7 +24,12 @@ object CosmeticService
         ),
         KillMessageCosmeticType::class to mutableListOf(
             COMPUTER_NERD_KILL_MESSAGE,
-            MEME_KILL_MESSAGE
+            MEME_KILL_MESSAGE,
+            PVP_KILL_MESSAGE,
+            ADVANCED_KILL_MESSAGE,
+            BBQ_KILL_MESSAGE,
+            HONORABLE_KILL_MESSAGE,
+            WOOF_WOOF_KILL_MESSAGE
         )
     )
 
