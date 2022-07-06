@@ -16,7 +16,6 @@ val PORTAL_TRAIL_TYPE = parseLinear("Portal", "portal_trail", ParticleEffect.POR
 val SNOWBALL_TRAIL_TYPE = parseLinear("Snowball", "snowball_trail", ParticleEffect.SNOWBALL)
 val REDSTONE_TRAIL_TYPE = parseLinear("Redstone", "redstone_trail", ParticleEffect.REDSTONE)
 
-
 fun parseLinear(name: String, id: String, effect: ParticleEffect): TrailCosmeticType
 {
     return object : TrailCosmeticType()

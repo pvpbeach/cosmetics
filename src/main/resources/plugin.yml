@@ -1,0 +1,5 @@
+name: cosmetics
+version: 1.0-SNAPSHOT
+main: com.pvpbeach.cosmetics.CosmeticsPlugin
+commands:
+  cosmetics-debug:

@@ -12,7 +12,9 @@ data class WrappedParticle(
     val effect: ParticleEffect,
     val location: Location,
     val color: Color? = null,
-    val amount: Int = 2,
+    val amount: Int = 5,
+    val offset: Float = 0.2F,
+    val speed: Float = 0.1F,
     val data: ParticleData? = null
 )
 
@@ -25,6 +27,10 @@ object ParticleHandler
             val builder =
                 ParticleBuilder(particle.effect, particle.location)
                     .setAmount(particle.amount)
+                    .setOffsetX(particle.offset)
+                    .setOffsetY(particle.offset)
+                    .setOffsetZ(particle.offset)
+                    .setSpeed(particle.speed)
 
             if (particle.color != null)
             {
@@ -40,7 +46,7 @@ object ParticleHandler
         }
     }
 
-    fun processPlayerParticle(player: Entity, builder: ParticleBuilder)
+    private fun processPlayerParticle(player: Entity, builder: ParticleBuilder)
     {
         val filtered = TargetFilterHandler
             .filter

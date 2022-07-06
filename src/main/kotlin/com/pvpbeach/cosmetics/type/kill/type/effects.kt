@@ -16,6 +16,8 @@ import xyz.xenondevs.particle.ParticleEffect
 import xyz.xenondevs.particle.data.texture.ItemTexture
 import java.util.*
 
+// TODO: 7/6/2022 add offsets.
+// full list can be found here https://github.com/pvpbeach/Pivot/blob/main/Pivot-spigot/src/main/java/net/orbitgames/core/cosmetics/killeffect/KillEffectType.java
 val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect") {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
@@ -50,14 +52,16 @@ val CHESS_KILL_EFFECT = parseEffectLinear("Chess", "chess_kill_effect") {
             location = location,
             data = ItemTexture(
                 ItemStack(Material.QUARTZ_BLOCK)
-            )
+            ),
+            offset = 0.3F
         ),
         WrappedParticle(
             effect = ParticleEffect.ITEM_CRACK,
             location = location,
             data = ItemTexture(
                 ItemStack(Material.COAL_BLOCK)
-            )
+            ),
+            offset = 0.3F
         )
     )
 
@@ -69,8 +73,9 @@ val CLOUD_KILL_EFFECT = parseEffectLinear("Cloud", "cloud_kill_effect") {
         listOf(
             WrappedParticle(
                 effect = ParticleEffect.CLOUD,
-                location = it.location
-            )
+                location = it.location,
+                offset = 0.0F,
+            ),
         ),
         it
     )
@@ -84,11 +89,13 @@ val COAL_KILL_EFFECT = parseEffectLinear("Coal", "coal_kill_effect") {
             location = location,
             data = ItemTexture(
                 ItemStack(Material.COAL)
-            )
+            ),
+            offset = 0.3F,
         ),
         WrappedParticle(
             effect = ParticleEffect.SMOKE_LARGE,
             location = location,
+            offset = 0.3F
         )
     )
 
@@ -103,7 +110,8 @@ val COOKIE_KILL_EFFECT = parseEffectLinear("Cookie", "cookie_kill_effect") {
                 location = it.location,
                 data = ItemTexture(
                     ItemStack(Material.COOKIE)
-                )
+                ),
+                offset = 0.7F
             )
         ),
         it

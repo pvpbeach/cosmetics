@@ -17,7 +17,7 @@ object PlayerListener : Listener
         Bukkit
             .getPluginManager()
             .callEvent(
-                PlayerKillEvent(player, event)
+                PlayerKillEvent(killer, event)
             )
     }
 }
