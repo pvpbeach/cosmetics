@@ -1,6 +1,7 @@
 package com.pvpbeach.cosmetics.type.kill
 
 import com.pvpbeach.cosmetics.events.PlayerKillEvent
+import com.pvpbeach.cosmetics.filter.TargetFilterHandler
 import com.pvpbeach.cosmetics.type.CosmeticType
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
