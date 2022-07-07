@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.github.patrickzondervan:events:31631859a6'
     implementation 'xyz.xenondevs:particle:1.8.1'
     implementation 'com.github.devrawr:tasks:0385a06671'
+    implementation 'com.github.NoSequel:MenuAPI:a8560f4be7'
 
     compileOnly 'com.comphenix.protocol:ProtocolLib:4.8.0'
 

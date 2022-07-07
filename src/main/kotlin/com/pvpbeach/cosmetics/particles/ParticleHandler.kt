@@ -26,7 +26,7 @@ object ParticleHandler
         {
             val builder =
                 ParticleBuilder(particle.effect, particle.location)
-                    .setAmount(particle.amount * 3)
+                    .setAmount(particle.amount)
                     .setOffsetX(particle.offset)
                     .setOffsetY(particle.offset + 1)
                     .setOffsetZ(particle.offset)

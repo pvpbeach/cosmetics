@@ -26,6 +26,7 @@ class PlayerCosmeticData
 
     operator fun <T : CosmeticType> get(type: Class<T>): CosmeticType?
     {
+        // TODO: 7/7/2022 code is very ugly plz fix future patrick
         return selectedCosmeticData[type]?.let { current ->
             CosmeticService
                 .cosmeticTypeMap[type.kotlin]!!

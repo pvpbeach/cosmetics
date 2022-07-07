@@ -4,12 +4,23 @@ import com.pvpbeach.cosmetics.events.PlayerKillEvent
 import com.pvpbeach.cosmetics.filter.TargetFilterHandler
 import com.pvpbeach.cosmetics.type.CosmeticType
 import org.bukkit.ChatColor
+import org.bukkit.Material
 import org.bukkit.event.EventHandler
+import org.bukkit.inventory.ItemStack
 import java.util.*
 
 abstract class KillMessageCosmeticType(override val name: String, override val id: String) : CosmeticType
 {
     abstract val killMessages: Array<KillMessage>
+
+    override val description = arrayOf(
+        "Lorem your mom"
+    )
+
+    override val parentName = "Kill Messages"
+    override val parentIcon = ItemStack(
+        Material.NAME_TAG
+    )
 
     @EventHandler
     fun onKill(event: PlayerKillEvent)

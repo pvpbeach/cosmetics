@@ -3,16 +3,27 @@ package com.pvpbeach.cosmetics.type.kill
 import com.pvpbeach.cosmetics.events.PlayerKillEvent
 import com.pvpbeach.cosmetics.filter.TargetFilterHandler
 import com.pvpbeach.cosmetics.type.CosmeticType
+import org.bukkit.Material
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.PlayerDeathEvent
+import org.bukkit.inventory.ItemStack
 import java.util.*
 
 abstract class KillEffectCosmeticType : CosmeticType
 {
     abstract override val name: String
     abstract override val id: String
+
+    override val description = arrayOf(
+        "Lorem your mom"
+    )
+
+    override val parentName = "Kill Effects"
+    override val parentIcon = ItemStack(
+        Material.BLAZE_POWDER
+    )
 
     /**
      * Method gets called right when the [PlayerDeathEvent] is called.

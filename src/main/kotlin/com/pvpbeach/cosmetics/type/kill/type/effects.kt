@@ -7,7 +7,7 @@ import com.pvpbeach.cosmetics.filter.TargetFilterHandler
 import com.pvpbeach.cosmetics.particles.ParticleHandler
 import com.pvpbeach.cosmetics.particles.WrappedParticle
 import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
-import org.bukkit.Material
+import org.bukkit.*
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.PlayerDeathEvent
@@ -22,7 +22,7 @@ val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect") {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
 
-    for (i in 0..6)
+    for (i in 0..8)
     {
         particles += WrappedParticle(
             effect = ParticleEffect.ITEM_CRACK,
@@ -38,6 +38,17 @@ val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect") {
             data = ItemTexture(
                 ItemStack(Material.REDSTONE_BLOCK)
             )
+        )
+    }
+
+    val filter = TargetFilterHandler
+        .filter
+        .filter(it)
+
+    for (player in filter)
+    {
+        player.playEffect(
+            location, Effect.TILE_BREAK, Material.REDSTONE_BLOCK.id
         )
     }
 

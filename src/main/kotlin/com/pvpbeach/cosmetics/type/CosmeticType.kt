@@ -7,11 +7,16 @@ import org.bukkit.event.Event
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.ProjectileLaunchEvent
 import org.bukkit.event.player.PlayerEvent
+import org.bukkit.inventory.ItemStack
 
 interface CosmeticType
 {
     val name: String
     val id: String
+
+    val parentName: String
+    val parentIcon: ItemStack
+    val description: Array<String>
 
     fun initialize()
     {
