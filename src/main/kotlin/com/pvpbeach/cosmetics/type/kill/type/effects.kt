@@ -18,7 +18,7 @@ import java.util.*
 
 // TODO: 7/6/2022 add offsets.
 // full list can be found here https://github.com/pvpbeach/Pivot/blob/main/Pivot-spigot/src/main/java/net/orbitgames/core/cosmetics/killeffect/KillEffectType.java
-val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect") {
+val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect", Material.NETHER_STALK) {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
 
@@ -55,7 +55,7 @@ val BLOOD_KILL_EFFECT = parseEffectLinear("Blood", "blood_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val CHESS_KILL_EFFECT = parseEffectLinear("Chess", "chess_kill_effect") {
+val CHESS_KILL_EFFECT = parseEffectLinear("Chess", "chess_kill_effect", Material.QUARTZ) {
     val location = it.location
     val particles = listOf(
         WrappedParticle(
@@ -79,7 +79,7 @@ val CHESS_KILL_EFFECT = parseEffectLinear("Chess", "chess_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val CLOUD_KILL_EFFECT = parseEffectLinear("Cloud", "cloud_kill_effect") {
+val CLOUD_KILL_EFFECT = parseEffectLinear("Cloud", "cloud_kill_effect", Material.WEB) {
     ParticleHandler.sendWrappedParticles(
         listOf(
             WrappedParticle(
@@ -92,7 +92,7 @@ val CLOUD_KILL_EFFECT = parseEffectLinear("Cloud", "cloud_kill_effect") {
     )
 }
 
-val COAL_KILL_EFFECT = parseEffectLinear("Coal", "coal_kill_effect") {
+val COAL_KILL_EFFECT = parseEffectLinear("Coal", "coal_kill_effect", Material.COAL) {
     val location = it.location
     val particles = listOf(
         WrappedParticle(
@@ -113,7 +113,7 @@ val COAL_KILL_EFFECT = parseEffectLinear("Coal", "coal_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val COOKIE_KILL_EFFECT = parseEffectLinear("Cookie", "cookie_kill_effect") {
+val COOKIE_KILL_EFFECT = parseEffectLinear("Cookie", "cookie_kill_effect", Material.COOKIE) {
     ParticleHandler.sendWrappedParticles(
         listOf(
             WrappedParticle(
@@ -129,7 +129,7 @@ val COOKIE_KILL_EFFECT = parseEffectLinear("Cookie", "cookie_kill_effect") {
     )
 }
 
-val GOLD_KILL_EFFECT = parseEffectLinear("Gold", "gold_kill_effect") {
+val GOLD_KILL_EFFECT = parseEffectLinear("Gold", "gold_kill_effect", Material.GOLD_INGOT) {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
 
@@ -152,7 +152,7 @@ val GOLD_KILL_EFFECT = parseEffectLinear("Gold", "gold_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val DIAMOND_KILL_EFFECT = parseEffectLinear("Diamond", "diamond_kill_effect") {
+val DIAMOND_KILL_EFFECT = parseEffectLinear("Diamond", "diamond_kill_effect", Material.DIAMOND) {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
 
@@ -175,7 +175,7 @@ val DIAMOND_KILL_EFFECT = parseEffectLinear("Diamond", "diamond_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val EMERALD_KILL_EFFECT = parseEffectLinear("Emerald", "emerald_kill_effect") {
+val EMERALD_KILL_EFFECT = parseEffectLinear("Emerald", "emerald_kill_effect", Material.EMERALD) {
     val location = it.location
     val particles = mutableListOf<WrappedParticle>()
 
@@ -198,7 +198,7 @@ val EMERALD_KILL_EFFECT = parseEffectLinear("Emerald", "emerald_kill_effect") {
     ParticleHandler.sendWrappedParticles(particles, it)
 }
 
-val EXPLOSION_KILL_EFFECT = parseEffectLinear("Explosion", "explosion_kill_effect") {
+val EXPLOSION_KILL_EFFECT = parseEffectLinear("Explosion", "explosion_kill_effect", Material.TNT) {
     ParticleHandler.sendWrappedParticles(
         listOf(
             WrappedParticle(
@@ -210,7 +210,7 @@ val EXPLOSION_KILL_EFFECT = parseEffectLinear("Explosion", "explosion_kill_effec
     )
 }
 
-val FIREWORK_KILL_EFFECT = parseEffectLinear("Firework", "firework_kill_effect") {
+val FIREWORK_KILL_EFFECT = parseEffectLinear("Firework", "firework_kill_effect", Material.FIREWORK) {
     val location = it.location
     val filter = TargetFilterHandler.filter
 
@@ -257,7 +257,7 @@ val FIREWORK_KILL_EFFECT = parseEffectLinear("Firework", "firework_kill_effect")
         }
 }
 
-val FLAME_KILL_EFFECT = parseEffectLinear("Flame", "flame_kill_effect") {
+val FLAME_KILL_EFFECT = parseEffectLinear("Flame", "flame_kill_effect", Material.FLINT_AND_STEEL) {
     ParticleHandler.sendWrappedParticles(
         listOf(
             WrappedParticle(
@@ -282,9 +282,9 @@ val FLAME_KILL_EFFECT = parseEffectLinear("Flame", "flame_kill_effect") {
  *               As mentioned in the second paragraph, this action only takes Entity as parameter,
  *               and fully disregards the usual Player parameter.
  */
-fun parseEffectLinear(name: String, id: String, action: (Entity) -> Unit): KillEffectCosmeticType
+fun parseEffectLinear(name: String, id: String, icon: Material, action: (Entity) -> Unit): KillEffectCosmeticType
 {
-    return parseEffect(name, id) { entity, _ ->
+    return parseEffect(name, id, icon) { entity, _ ->
         action.invoke(entity)
     }
 }
@@ -298,12 +298,14 @@ fun parseEffectLinear(name: String, id: String, action: (Entity) -> Unit): KillE
  *               This method takes both Entity and Player as argument, and is the base method for the other
  *               method which disregards the specified Player argument.
  */
-fun parseEffect(name: String, id: String, action: (Entity, Player) -> Unit): KillEffectCosmeticType
+fun parseEffect(name: String, id: String, icon: Material, action: (Entity, Player) -> Unit): KillEffectCosmeticType
 {
     return object : KillEffectCosmeticType()
     {
         override val name = name
         override val id = id
+        override val childIcon = ItemStack(icon)
+        override val childDescription = arrayOf<String>()
 
         /**
          * Method gets called right when the [PlayerDeathEvent] is called.

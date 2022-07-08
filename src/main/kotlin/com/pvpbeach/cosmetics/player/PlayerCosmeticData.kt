@@ -36,8 +36,14 @@ class PlayerCosmeticData
         }
     }
 
-    operator fun <T : CosmeticType> set(type: Class<T>, current: CosmeticType)
+    operator fun <T : CosmeticType> set(type: Class<T>, current: CosmeticType?)
     {
+        if (current == null)
+        {
+            selectedCosmeticData.remove(type)
+            return
+        }
+
         selectedCosmeticData[type] = current.id
     }
 }

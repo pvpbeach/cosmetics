@@ -13,9 +13,8 @@ abstract class KillMessageCosmeticType(override val name: String, override val i
 {
     abstract val killMessages: Array<KillMessage>
 
-    override val description = arrayOf(
-        "Lorem your mom"
-    )
+    override val parentDescription =
+        "Lorem ipsum mommy???"
 
     override val parentName = "Kill Messages"
     override val parentIcon = ItemStack(
@@ -36,14 +35,14 @@ abstract class KillMessageCosmeticType(override val name: String, override val i
         val names = when (random.pattern)
         {
             KillMessagePattern.KILLER_TARGET -> Pair(killer.name, entity.name)
-            KillMessagePattern.TARGET_KILLER -> Pair(killer.name, entity.name)
+            KillMessagePattern.TARGET_KILLER -> Pair(entity.name, killer.name)
         }
 
         filter
             .filter(entity)
             .forEach {
                 it.sendMessage(
-                    "${ChatColor.RED}${names.first} ${ChatColor.GOLD}${random.message} ${ChatColor.RED}${names.second}"
+                    "${ChatColor.RED}${names.first} ${ChatColor.YELLOW}was ${random.message} by ${ChatColor.GREEN}${names.second}"
                 )
             }
     }

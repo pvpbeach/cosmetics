@@ -10,14 +10,14 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.ProjectileLaunchEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.potion.Potion
 import xyz.xenondevs.particle.ParticleEffect
 
 abstract class TrailCosmeticType : CosmeticType
 {
     abstract val effect: ParticleEffect
-    override val description = arrayOf(
-        "Lorem your mom"
-    )
+    override val parentDescription =
+        "Lorem ipsum mommy"
 
     override val parentName = "Trails"
     override val parentIcon = ItemStack(
@@ -33,7 +33,14 @@ abstract class TrailCosmeticType : CosmeticType
         if (player is Player)
         {
             val predicate = {
-                projectile == null || projectile.isOnGround || projectile.isDead
+                projectile == null || projectile.isOnGround || projectile.isDead || kotlin.run {
+                    if (projectile is Potion)
+                    {
+                        return@run !projectile.isValid
+                    }
+
+                    false
+                }
             }
 
             val task = Tasks
@@ -50,7 +57,6 @@ abstract class TrailCosmeticType : CosmeticType
                             ),
                             target = player
                         )
-
                 }
                 .cancelIf(predicate())
 

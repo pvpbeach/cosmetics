@@ -7,6 +7,7 @@ import com.pvpbeach.cosmetics.type.message.type.*
 import com.pvpbeach.cosmetics.type.trail.TrailCosmeticType
 import com.pvpbeach.cosmetics.type.trail.type.*
 import org.bukkit.Bukkit
+import org.bukkit.entity.Player
 import kotlin.reflect.KClass
 
 object CosmeticService
@@ -58,6 +59,16 @@ object CosmeticService
     init
     {
         registerDependEffects()
+    }
+
+    inline fun <reified T : CosmeticType> getModelType(): CosmeticType?
+    {
+        return cosmeticTypeMap[T::class]?.firstOrNull()
+    }
+
+    fun canUseCosmetic(player: Player, cosmeticType: CosmeticType): Boolean
+    {
+        return player.hasPermission("cosmetics.${cosmeticType.id.replace("_", ".")}")
     }
 
     private fun registerDependEffects()

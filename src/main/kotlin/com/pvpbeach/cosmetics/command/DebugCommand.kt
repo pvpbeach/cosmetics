@@ -1,5 +1,6 @@
 package com.pvpbeach.cosmetics.command
 
+import com.pvpbeach.cosmetics.menu.CategoryMenu
 import com.pvpbeach.cosmetics.player.PlayerCosmeticData
 import com.pvpbeach.cosmetics.type.CosmeticService
 import com.pvpbeach.cosmetics.type.CosmeticType
@@ -19,6 +20,12 @@ object DebugCommand : CommandExecutor
     {
         if (sender !is Player)
         {
+            return true
+        }
+
+        if (args.isEmpty())
+        {
+            CategoryMenu(sender).updateMenu()
             return true
         }
 

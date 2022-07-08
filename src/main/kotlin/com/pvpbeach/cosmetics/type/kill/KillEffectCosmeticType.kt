@@ -16,9 +16,8 @@ abstract class KillEffectCosmeticType : CosmeticType
     abstract override val name: String
     abstract override val id: String
 
-    override val description = arrayOf(
-        "Lorem your mom"
-    )
+    override val parentDescription =
+        "Lorem ipsum mommy???"
 
     override val parentName = "Kill Effects"
     override val parentIcon = ItemStack(

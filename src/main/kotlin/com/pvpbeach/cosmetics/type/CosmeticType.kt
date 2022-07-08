@@ -14,9 +14,13 @@ interface CosmeticType
     val name: String
     val id: String
 
-    val parentName: String
     val parentIcon: ItemStack
-    val description: Array<String>
+    val childIcon: ItemStack
+
+    val parentName: String
+
+    val parentDescription: String
+    val childDescription: Array<String>
 
     fun initialize()
     {
@@ -29,7 +33,6 @@ interface CosmeticType
 
         for (method in methods)
         {
-            println(method.name)
             val event = method.parameterTypes[0]
             var retrievePlayer: ((Event) -> Player?)? = null
 
@@ -75,7 +78,6 @@ interface CosmeticType
                             superclass = superclass.superclass as Class<out CosmeticType>
                         }
 
-                        println("${superclass}-${this::class.java}")
                         profile[superclass] == this
                     }
                     .on {
