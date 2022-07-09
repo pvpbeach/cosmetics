@@ -22,6 +22,18 @@ interface CosmeticType
     val parentDescription: String
     val childDescription: Array<String>
 
+    fun getCosmeticType(): Class<out CosmeticType>
+    {
+        var superClass = this.javaClass.superclass
+
+        while (superClass.superclass != CosmeticType::class.java)
+        {
+            superClass = superClass.superclass
+        }
+
+        return superClass as Class<out CosmeticType>
+    }
+
     fun initialize()
     {
         val methods = this.javaClass

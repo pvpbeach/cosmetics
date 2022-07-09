@@ -4,6 +4,7 @@ import com.pvpbeach.cosmetics.type.CosmeticService
 import com.pvpbeach.cosmetics.type.CosmeticType
 import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
 import com.pvpbeach.cosmetics.type.message.KillMessageCosmeticType
+import com.pvpbeach.cosmetics.type.particles.ParticleCosmeticType
 import com.pvpbeach.cosmetics.type.trail.TrailCosmeticType
 import com.pvpbeach.cosmetics.util.LineWrapping
 import io.github.nosequel.menu.Menu
@@ -53,6 +54,10 @@ class CategoryMenu(player: Player) : Menu(player, "", 45)
 
         this.buttons[24] = CategoryButton(
             CosmeticService.getModelType<TrailCosmeticType>()!!, player
+        )
+
+        this.buttons[44] = CategoryButton(
+            CosmeticService.getModelType<ParticleCosmeticType>()!!, player
         )
     }
 }

@@ -4,6 +4,8 @@ import com.pvpbeach.cosmetics.type.kill.KillEffectCosmeticType
 import com.pvpbeach.cosmetics.type.kill.type.*
 import com.pvpbeach.cosmetics.type.message.KillMessageCosmeticType
 import com.pvpbeach.cosmetics.type.message.type.*
+import com.pvpbeach.cosmetics.type.particles.ParticleCosmeticType
+import com.pvpbeach.cosmetics.type.particles.type.WATER_DROP_PARTICLES
 import com.pvpbeach.cosmetics.type.trail.TrailCosmeticType
 import com.pvpbeach.cosmetics.type.trail.type.*
 import org.bukkit.Bukkit
@@ -45,6 +47,9 @@ object CosmeticService
             PORTAL_TRAIL_TYPE,
             SNOWBALL_TRAIL_TYPE,
             REDSTONE_TRAIL_TYPE,
+        ),
+        ParticleCosmeticType::class to mutableListOf(
+            WATER_DROP_PARTICLES
         )
     )
 
